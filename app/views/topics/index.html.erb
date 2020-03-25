@@ -23,6 +23,21 @@
             <p class="topic-text">
               <%= time_ago_in_words(topic.created_at) %>前に投稿
             </p>
+            
+            <%= link_to comments_path(topic_id: topic.id) do %>
+              <%= image_tag 'comment.svg', class: 'topic-index-icon' %>
+            <% end %>
+            
+            <h3>コメント</h3>
+              <% topic.comments.each do |comment| %>
+                <h2 class="topic-author">
+                  <%= comment.user.name %>
+                </h2>
+            
+                <p class="topic-text">
+                  <%= comment.content %>
+                </p>
+              <% end %>
           </div>
         </div>
       </div>
