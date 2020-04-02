@@ -22,6 +22,12 @@
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
+              <%= link_to users_path do %>
+                <%= image_tag "user.svg" %>
+              <% end %>
+            </li>
+            
+            <li>
               <%= link_to topics_path do %>
                 <%= image_tag "list.svg" %>
               <% end %>

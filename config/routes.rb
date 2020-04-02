@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+  get 'users/index'
   get 'sessions/new'
   
   root 'pages#index'
   get 'pages/help'
   
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :topics
+  resources :relationships, only: [:create, :destroy]
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
