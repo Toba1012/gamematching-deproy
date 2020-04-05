@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+  
+  has_many :group_users
+  has_many :groups, through: :group_users
+
 end

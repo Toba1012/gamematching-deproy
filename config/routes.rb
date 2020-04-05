@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'groups/new'
   get 'users/index'
   get 'sessions/new'
   
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   end
   resources :topics
   resources :relationships, only: [:create, :destroy]
+  resources :groups
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

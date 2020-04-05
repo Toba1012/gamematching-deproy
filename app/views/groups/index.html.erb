@@ -1,0 +1,15 @@
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% @groups.each do |group| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            <h2 class="topic-author">
+              <%= link_to group.name, group %>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
