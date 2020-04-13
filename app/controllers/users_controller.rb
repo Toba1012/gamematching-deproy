@@ -1,5 +1,8 @@
 
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+  
   def index
     @users = User.all
   end
@@ -29,24 +32,30 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    
-    if current_user == @user
       
-      if @user.update(user_params)
-        flash[:success] = 'ユーザー情報を編集しました'
-        render :edit
-      else
-        flash.now[:danger] = 'ユーザー情報の編集に失敗しました'
-        render :edit
-      end
-      
+    if @user.update(user_params)
+      flash[:success] = 'ユーザー情報を編集しました'
+      redirect_to @user
     else
-      redirect_to root_url
+      flash.now[:danger] = 'ユーザー情報の編集に失敗しました'
+      render :edit
     end
   end
   
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile)
+  end
+  
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "ログインしてください"
+      redirect_to login_path
+    end
+  end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless @user == current_user
   end
 end
