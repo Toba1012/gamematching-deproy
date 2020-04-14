@@ -1,0 +1,16 @@
+<div class="topic-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for @chat,url: chats_create_path do |f| %>
+          <div class="form-group">
+            <%= f.label :content %>
+            <%= f.text_area :content, class: 'form-control' %>
+            <%= f.hidden_field :group_id, :value => params[:group_id] %>
+          </div>
+          <%= f.submit '送信する', class: 'btn btn-black btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

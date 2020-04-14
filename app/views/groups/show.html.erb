@@ -6,6 +6,17 @@
           <h2 class="topic-author">
              <%= @group.name %>
           </h2>
+          
+          <% @group.chats.each do |chat| %>
+            <h2 class="topic-author">
+              <%= link_to chat.user.name, user_path(chat.user.id)  %>
+            </h2>
+            
+            <p class="topic-text">
+              <%= chat.content %>
+            </p>
+          <% end %>
+          
         </div>
       </div>
     </div>

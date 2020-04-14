@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/new'
   get 'groups/new'
   get 'users/index'
   get 'sessions/new'
@@ -21,4 +22,7 @@ Rails.application.routes.draw do
   
   get '/comments/:topic_id/new', to: 'comments#new', as: 'comments'
   post '/comments/:topic_id/create', to: 'comments#create', as: 'comments_create'
+  
+  get '/chats/:group_id/new', to: 'chats#new', as: 'chats'
+  post '/chats/:group_id/create', to: 'chats#create', as: 'chats_create'
 end
