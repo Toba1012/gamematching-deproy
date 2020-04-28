@@ -22,8 +22,17 @@ class GroupsController < ApplicationController
     end
   end
   
+  def update
+    if @group.update(group_params)
+      redirect_to root_path, success: 'グループを更新しました'
+    else
+      flash.now[:danger] = "グループを更新できませんでした"
+      render :edit
+    end
+  end
+  
   private
   def group_params
-    params.require(:group).permit(:name, :user_ids)
+    params.require(:group).permit(:name, :user_id)
   end
 end

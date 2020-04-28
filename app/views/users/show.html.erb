@@ -13,6 +13,10 @@
           
           <%= render 'relationships/follow_button', user: @user %>
           
+          <h2 class="topic-author">
+            <%= link_to "グループに追加", new_group_user_path(user_id: @user.id) %>
+          </h2>
+          
         </div>
       </div>
     </div>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :topics
   resources :relationships, only: [:create, :destroy]
   resources :groups
+  resources :group_users
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

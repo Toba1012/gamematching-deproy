@@ -1,0 +1,15 @@
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% current_user.group_users.all.each do |group_user| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            <h2 class="topic-author">
+              <%= group_user.group.name %>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
