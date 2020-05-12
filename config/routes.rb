@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :topics
   resources :relationships, only: [:create, :destroy]
   resources :groups
-  resources :group_users
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -26,4 +25,7 @@ Rails.application.routes.draw do
   
   get '/chats/:group_id/new', to: 'chats#new', as: 'chats'
   post '/chats/:group_id/create', to: 'chats#create', as: 'chats_create'
+  
+  get '/group_users/:id/new', to: 'group_users#new', as: 'group_users'
+  post '/group_users/:id/create', to: 'group_users#create', as: 'group_users_create'
 end
