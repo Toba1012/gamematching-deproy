@@ -44,6 +44,14 @@
                 <%= image_tag "log-out.svg" %>
               <% end %>
             </li>
+            
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle" style="color: gold;"></i>
+            <% end %>
+            <li>
+              <%= link_to "NOTICE", users_notifications_path, class: "btn-default" %>
+            </li>
+            
           <% else %>
             <li>
               <%= link_to new_user_path do %>

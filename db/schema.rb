@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_041748) do
+ActiveRecord::Schema.define(version: 2020_05_14_025517) do
 
   create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -44,6 +44,23 @@ ActiveRecord::Schema.define(version: 2020_04_14_041748) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "visitor_id", null: false
+    t.bigint "visited_id", null: false
+    t.bigint "topic_id"
+    t.bigint "comment_id"
+    t.bigint "group_user_id"
+    t.string "action", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["group_user_id"], name: "index_notifications_on_group_user_id"
+    t.index ["topic_id"], name: "index_notifications_on_topic_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -74,4 +91,9 @@ ActiveRecord::Schema.define(version: 2020_04_14_041748) do
 
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "group_users"
+  add_foreign_key "notifications", "topics"
+  add_foreign_key "notifications", "users", column: "visited_id"
+  add_foreign_key "notifications", "users", column: "visitor_id"
 end
