@@ -7,7 +7,7 @@ class GroupUsersController < ApplicationController
     @group_user = current_user.group_users.new(group_user_params)
     
     if @group_user.save
-      @group_user.create_notification_add!(current_user)
+      @group_user.create_notification_by(current_user, @group_user.id)
       redirect_to root_path, success: 'グループに追加しました'
 
     else

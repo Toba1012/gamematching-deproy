@@ -1,11 +1,11 @@
 module NotificationsHelper
   
   def notification_form(notification)
-    @visiter = notification.visiter
+    @visitor = notification.visitor
     
     case notification.action
       when "add" then
-        tag.a(notification.visiter.name, href: users_user_path(@visiter), style: "font-weight: bold;") + "があなたをグループに追加しました"
+        tag.a(notification.visitor.name, href: user_path(@visitor), style: "font-weight: bold;") + "があなたをグループに追加しました"
     end
   end
   

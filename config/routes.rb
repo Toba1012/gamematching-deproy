@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :topics
   resources :relationships, only: [:create, :destroy]
   resources :groups
-  resources :notifications, only: :index
+  resources :notifications, only: [:index, :destroy]
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
